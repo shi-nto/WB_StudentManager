@@ -159,5 +159,5 @@ const deleteFromServer = (id,reussiFn,echecFn)=>{
         echecFn()
     })
     ajax.send()
-
 }
+

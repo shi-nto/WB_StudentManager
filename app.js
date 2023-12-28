@@ -52,25 +52,29 @@ app.post('/etudiants',(req,res)=>{
     })
 });
 
+
+
 app.delete('/etudiants/:id',(req,res)=>{
-   let etudiant = etudiants.find((ele)=>{return (ele.id==req.params.id)});
-   if(!etudiant)
-   {
-     return res.status(404).json({error:"erreur mesage"});
-   }
-    
-    etudiants = etudiants.filter(ele=>etudiant.id==req.params.id);
-    console.log(etudiants);
-    fs.writeFile('./bd/etudiants.json',JSON.stringify(etudiants),(err)=>{
-        if(err)
-        {
-            return res.status(500).json({err:"erreur messgain deletinng"});
-        }else{
-            return res.status(200).json(etudiant);
-        }
-    })
-    etudiants = etudiants.filter(ele=>etudiant.id!=req.params.id);
-})
+    let etudiant = etudiants.find((ele)=>{return (ele.id==req.params.id)});
+    if(!etudiant)
+    {
+      return res.status(404).json({error:"erreur mesage"});
+    }
+     
+     etudiants = etudiants.filter(ele=>ele.id!=req.params.id);
+     console.log(etudiants);
+     fs.writeFile('./bd/etudiants.json',JSON.stringify(etudiants),(err)=>{
+         if(err)
+         {
+             return res.status(500).json({err:"erreur messgain deletinng"});
+         }else{
+             return res.status(200).json(etudiant);
+         }
+     })
+     
+ })
+
+ // c e
 
 app.listen(Port,()=>{
     console.log("Server is running");
